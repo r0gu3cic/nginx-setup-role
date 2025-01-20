@@ -1,0 +1,8 @@
+---
+- hosts: local_vm
+  remote_user: root
+  vars_files:
+  - ../vars/vars.yml
+  roles:
+    - role: ../../nginx-setup-role
+

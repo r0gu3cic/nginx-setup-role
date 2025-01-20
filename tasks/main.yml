@@ -1,0 +1,4 @@
+---
+- name: Setup Nginx server
+  import_tasks: nginx_setup.yml
+  when: ansible_facts['distribution'] | lower == 'ubuntu'

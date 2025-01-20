@@ -1,0 +1,31 @@
+---
+# Update repositories
+- name: Update repositories cache
+  apt: 
+    update_cache: yes
+# Install NGINX server
+- name: Install NGINX server
+  apt: 
+    name: nginx
+    state: present
+# Install apache2-utils to be able to protect web pages with authorization prompt
+- name: Install apache2-utils
+  apt:
+    name: apache2-utils
+    state: present
+
+# Make sure that nothing is stopping NGINX from running
+- name: Stop and disable apache2 service
+  ansible.builtin.systemd:
+    name: apache2
+    state: stopped
+    enabled: no
+
+# Restart and enable NGINX server service
+- name: Restart and enable NGINX server service
+  service: 
+    name: "{{item}}"
+    state: restarted 
+    enabled: yes
+  loop: 
+    - "nginx"
