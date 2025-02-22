@@ -20,6 +20,7 @@
     name: apache2
     state: stopped
     enabled: no
+  ignore_errors: true
 
 # Restart and enable NGINX server service
 - name: Restart and enable NGINX server service
